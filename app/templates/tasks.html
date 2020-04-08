@@ -1,0 +1,34 @@
+{% extends "base-tpl.html" %}
+
+{% block content %}
+
+    <h1> Taska page</h1>
+    
+    {% if tasks %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">address</th>
+                <th scope="col">timestamp</th>
+                <th scope="col">task_status</th>
+                <th scope="col">http_status</th>
+                <th scope="col">ID</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for task in tasks %}
+            <tr>
+                <th scope="row">{{ task.address }}</th>
+                <td>{{ task.timestamp }}</td>
+                <td>{{ task.task_status }}</td>
+                <td>{{ task.http_status }}</td>
+                <td>{{ task.id }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>Задачи не найдены</p>
+    {% endif %}
+
+{% endblock %}

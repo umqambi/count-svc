@@ -1,0 +1,32 @@
+{% extends "base-tpl.html" %}
+
+{% block content %}
+
+    <h1> Result page</h1>
+    
+    {% if results %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">address</th>
+                <th scope="col">words_count</th>
+                <th scope="col">http_status_code</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for result in results %}
+            <tr>
+                <th scope="row">{{ result.id }}</th>
+                <td>{{ result.address }}</td>
+                <td>{{ result.words_count }}</td>
+                <td>{{ result.http_status_code }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>Результаты не найдены</p>
+    {% endif %}
+
+{% endblock %}
