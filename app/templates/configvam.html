@@ -1,0 +1,13 @@
+{% extends "base-tpl.html" %}
+
+{% block content %}
+
+
+        <li>{{ c.SECRET_KEY }}</li>
+        <li>{{ c.SQLALCHEMY_DATABASE_URI }}</li>
+        <li>{{ c.SQLALCHEMY_TRACK_MODIFICATIONS }}</li>
+        <li>{{ c.CELERY_BROKER_URL }}</li>
+        <li>{{ c.CELERY_RESULT_BACKEND }}</li>
+
+
+{% endblock %}

@@ -5,6 +5,7 @@ from app.utils import task_add
 
 from app import db
 from app.models import Results, Tasks, TaskStatus
+from config import Config
 
 import requests
 
@@ -33,6 +34,11 @@ def tasks_page():
 def results_page():
     results = Results.query.all()
     return render_template('results.html', title='Results', results = results)
+
+@app.route('/configvam')
+def configvam_page():
+    c = Config
+    return render_template('configvam.html', title='configvam', c = c)
 
 # @app.route('/dellall')
 # def dellall_page():
