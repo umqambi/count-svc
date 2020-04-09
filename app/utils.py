@@ -16,6 +16,7 @@ def word_counter_for_url(url, word):
 @celery.task()
 def task_do(id, cword):
     task = Tasks.query.get(id)
+    print('!!!!!!!!СТАТУС ЗАДАЧИ {} - {}'.format(id,task.task_status))
     task.task_status = TaskStatus.PENDING
     db.session.add(task)
     db.session.commit()

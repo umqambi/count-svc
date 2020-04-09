@@ -5,6 +5,9 @@ RUN adduser -D count-svc
 WORKDIR /home/count-svc
 
 COPY requirements.txt requirements.txt
+RUN apk update && apk add postgresql-dev gcc python3-dev musl-dev
+
+RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 COPY app app
@@ -14,10 +17,10 @@ RUN chmod +x boot.sh
 RUN chmod +x celery.sh
 
 ENV FLASK_APP count-svc.py
-ENV SSECRET_KEY "jbvedrr8430tgj4kgmrfg/dgb.rjgrej43434.ed..454yh"
+ENV SECRET_KEY "jbvedrr8430tgj4kgmrfg/dgb.rjgrej43434.ed..454yh"
 
 RUN chown -R count-svc:count-svc ./
 USER count-svc
 
-EXPOSE 5500
+#EXPOSE 5500
 #ENTRYPOINT ["./boot.sh"]
