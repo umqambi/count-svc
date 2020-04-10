@@ -18,13 +18,11 @@ services:
     links: 
       - redis
       - db1
-    ports:
-      - "5501:5500"
     restart: always
     environment: 
       - CELERY_BROKER_URL=redis://redis:6379
       - CELERY_RESULT_BACKEND=redis://redis:6379
-      - SQLALCHEMY_DATABASE_URI=postgresql://user1744:pass1744@db1/sitedb
+      - DATABASE_URL=postgresql://user1744:pass1744@db1/sitedb
     depends_on:
       - redis
       - db1
@@ -41,7 +39,7 @@ services:
     environment: 
       - CELERY_BROKER_URL=redis://redis:6379
       - CELERY_RESULT_BACKEND=redis://redis:6379
-      - SQLALCHEMY_DATABASE_URI=postgresql://user1744:pass1744@db1/sitedb
+      - DATABASE_URL=postgresql://user1744:pass1744@db1/sitedb
     depends_on:
       - redis
       - wocker

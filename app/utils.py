@@ -8,6 +8,9 @@ from app.models import Results, Tasks, TaskStatus
 checked_word = 'python'
 
 def word_counter_for_url(url, word):
+    # Функция подсчета слов на странице
+    # Принимает адрес страницы и искомое слово
+    # Возвращает Количество найденных слов
     site_data = requests.get(url)
     wcfu = site_data.text.lower().count(word)
     return wcfu
@@ -15,8 +18,8 @@ def word_counter_for_url(url, word):
 
 @celery.task()
 def task_do(id, cword):
+    # Функция выполнения задачи подсчета, из очереди
     task = Tasks.query.get(id)
-    print('!!!!!!!!СТАТУС ЗАДАЧИ {} - {}'.format(id,task.task_status))
     task.task_status = TaskStatus.PENDING
     db.session.add(task)
     db.session.commit()
@@ -51,6 +54,7 @@ def task_do(id, cword):
 
 
 def task_add(site):
+    # Функция постановки задачи
     status = False
     try:
         status = requests.get(site, timeout = 10).status_code

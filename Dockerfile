@@ -21,6 +21,3 @@ ENV SECRET_KEY "jbvedrr8430tgj4kgmrfg/dgb.rjgrej43434.ed..454yh"
 
 RUN chown -R count-svc:count-svc ./
 USER count-svc
-
-#EXPOSE 5500
-#ENTRYPOINT ["./boot.sh"]

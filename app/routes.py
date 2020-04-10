@@ -11,6 +11,7 @@ import requests
 
 @app.route('/', methods=['GET', 'POST'])
 def home_page():
+    # Главная траница, по гет возращает форму, по пост ее обрабатывает
     form = SiteChekForm()
     if form.validate_on_submit():
         site = form.site.data
@@ -21,28 +22,32 @@ def home_page():
 
 @app.route('/result_success')
 def result_success_page():
+    # Страница информатор о постановке задачи
     site = request.args['site']
     return render_template('result_success.html', title='Task added', site = site)
 
 
 @app.route('/tasks')
 def tasks_page():
+    # Страница просмотра задач
     tasks = Tasks.query.all()
     return render_template('tasks.html', title='Tasks', tasks = tasks)
 
 @app.route('/results')
 def results_page():
+    # Страница просмотра результатов
     results = Results.query.all()
     return render_template('results.html', title='Results', results = results)
 
 @app.route('/configvam')
 def configvam_page():
+    # функция для просмотра конфига, только для ОТЛАДКИ!
     c = Config
     return render_template('configvam.html', title='configvam', c = c)
 
 # @app.route('/dellall')
 # def dellall_page():
-#     # функция для очистки базы, только для разработки!
+#     # функция для очистки базы, только для ОТЛАДКИ!
 #     results = Results.query.all()
 #     for r in results:
 #         db.session.delete(r)
